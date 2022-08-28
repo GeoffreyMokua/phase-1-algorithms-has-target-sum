@@ -1,5 +1,23 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  if (array.length === 1) {
+    if (array[0] === target) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    for (const a of array) {
+      for (let i = array.indexOf(a) + 1; i < array.length; i++) {
+        if (array.indexOf(a) !== i) {
+          if (a + array[i] === target) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 }
 
 /* 
@@ -8,6 +26,10 @@ function hasTargetSum(array, target) {
 
 /* 
   Add your pseudocode here
+  if array.length equals 1 
+  if item in array equals the total
+    return true;
+  else return false;
 */
 
 /*
@@ -24,11 +46,27 @@ if (require.main === module) {
 
   console.log("Expecting: true");
   console.log("=>", hasTargetSum([22, 19, 4, 6, 30], 25));
-
   console.log("");
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+  console.log("");
+
+  console.log("Expecting: true")
+  console.log("=>", hasTargetSum([-7, 10, 4, 8], 3));
+  console.log("");
+
+  console.log("Expecting: true")
+  console.log("=>", hasTargetSum([1, 2, 3, 4], 5));
+  console.log("");
+
+  console.log("Expecting: true")
+  console.log("=>", hasTargetSum([2, 2, 3, 3], 4));
+  console.log("");
+
+  console.log("Expecting: false")
+  console.log("=>", hasTargetSum([4], 4))
+
 }
 
 module.exports = hasTargetSum;
